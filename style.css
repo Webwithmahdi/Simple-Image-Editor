@@ -1,0 +1,298 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#70f2f5, #803aef);
+  font-family: "Poppins", sans-serif;
+}
+html {
+  font-size: 62.5%;
+}
+img {
+  max-width: 100%;
+}
+.content {
+  margin: auto;
+}
+.image-editor {
+  top: 25px;
+  width: 150px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  border-radius: 7px;
+  transition: all 0.4s ease-in-out;
+  z-index: 5;
+}
+.progress-area {
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  bottom: 100%;
+  transition: all 0.3s ease-in-out;
+  border-radius: 7px 7px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.429);
+  z-index: 1;
+}
+.progress-area-toggle {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.progress-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 85%;
+  height: 4px;
+  z-index: -1;
+}
+.progress-line-color {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: darkslateblue;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+.progress-dot {
+  appearance: none;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.progress-dot:nth-child(2) {
+  left: 30%;
+  transform: translate(0, -50%);
+}
+.progress-dot:nth-child(3) {
+  right: 30%;
+  left: unset;
+  transform: translate(0, -50%);
+}
+.progress-dot:nth-child(4) {
+  left: unset;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+.progress-dot:checked {
+  background-color: darkslateblue;
+}
+.work-area {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 0 7px 7px;
+  overflow: hidden;
+  z-index: 1;
+}
+.first-step {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 0.4s ease;
+}
+.first-step h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.image-upload-area {
+  position: relative;
+  padding: 12px;
+}
+#image-upload {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#image-upload + label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: darkslateblue;
+  height: 100%;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#image-upload + label::after {
+  position: absolute;
+  content: "Upload image";
+  white-space: nowrap;
+  font-size: 11px;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 3px 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+#image-upload + label:hover::after {
+  opacity: 1;
+}
+.dynamic-area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1350px;
+  height: 100%;
+  display: flex;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+.second-step,
+.third-step,
+.forth-step {
+  width: 450px;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.image-preview {
+  width: 100%;
+  height: 200px;
+  background: center/contain no-repeat border-box;
+  border-radius: 5px;
+  image-rendering: optimizeQuality;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttons-area {
+  width: 50%;
+  height: 45px;
+  display: flex;
+  justify-content: space-around;
+}
+.buttons-area button {
+  border: none;
+  outline: none;
+  background-color: darkslateblue;
+  font-size: 18px;
+  height: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.upload-new-btn,
+.edit-btn {
+  position: relative;
+}
+.upload-new-btn::after,
+.edit-btn::after {
+  position: absolute;
+  content: "Upload new image";
+  white-space: nowrap;
+  font-size: 11px;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 3px 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.edit-btn::after {
+  content: "Edit image";
+}
+:is(.upload-new-btn, .edit-btn):hover::after {
+  opacity: 1;
+}
+
+.image-edit-area {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
+}
+
+.image-edit-area button {
+  height: 100%;
+  aspect-ratio: 1/1;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: darkslateblue;
+  color: white;
+}
+.filter-range {
+  transition: all 0.3s ease;
+}
+
+#filters {
+  border: 1px solid darkslateblue;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 5px;
+}
+#range {
+  appearance: none;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: inset -2px -2px 5px #b4b2b2;
+  cursor: pointer;
+  accent-color: darkslateblue;
+}
+
+.export-text {
+  font-size: 18px;
+}
+
+/* Javascript toggles */
+.image-editor-toggle {
+  width: 450px;
+  height: 400px;
+  border-radius: 0 0 7px 7px;
+}
+.step-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+.filter-range-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+.rotate-x-toggle {
+  transform: rotateX(180deg);
+}
+.rotate-y-toggle {
+  transform: rotateY(180deg);
+}

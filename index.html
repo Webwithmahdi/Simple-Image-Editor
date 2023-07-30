@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple image editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="image-editor">
+        <div class="progress-area progress-area-toggle">
+          <div class="progress-line">
+            <input type="checkbox" class="progress-dot" />
+            <input type="checkbox" class="progress-dot" />
+            <input type="checkbox" class="progress-dot" />
+            <input type="checkbox" class="progress-dot" />
+            <div class="progress-line-color"></div>
+          </div>
+        </div>
+        <div class="work-area">
+          <div class="first-step">
+            <div class="image-upload-area">
+              <input type="file" id="image-upload" accept="image/*" />
+              <label for="image-upload"><i class="fas fa-upload"></i></label>
+            </div>
+          </div>
+          <div class="dynamic-area step-toggle">
+            <div class="second-step">
+              <div class="image-preview"></div>
+              <div class="buttons-area">
+                <button class="upload-new-btn">
+                  <i class="fas fa-upload"></i>
+                </button>
+                <button class="edit-btn"><i class="fas fa-edit"></i></button>
+              </div>
+            </div>
+            <div class="third-step">
+              <div class="image-preview"></div>
+              <div class="image-edit-area">
+                <button class="rotate-x">X</button>
+                <button class="rotate-y">Y</button>
+                <select name="filters" id="filters">
+                  <option value="">Select</option>
+                  <option value="opacity">Opacity</option>
+                  <option value="blur">Blur</option>
+                  <option value="brightness">Brightness</option>
+                  <option value="contrast">Contrast</option>
+                  <option value="grayscale">Grayscale</option>
+                  <option value="invert">Invert</option>
+                  <option value="saturate">Saturate</option>
+                  <option value="sepia">Sepia</option>
+                </select>
+                <div class="filter-range filter-range-toggle">
+                  <input type="range" step=".1" / id="range" min="0" max="1">
+                </div>
+              </div>
+
+              <div class="buttons-area">
+                <button class="upload-new-btn">
+                  <i class="fas fa-upload"></i>
+                </button>
+                <button class="save-btn"><i class="fas fa-save"></i></button>
+              </div>
+            </div>
+            <div class="forth-step">
+              <span class="export-text">Your image is exporting now....</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
+</html>
